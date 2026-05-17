@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KT Photography | Premium Cinematic & Luxury Wedding Studio</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Design Tokens & Variables */
+        :root {
+            --bg-dark: #070707;
+            --bg-card: #0f0f0f;
+            --accent-gold: #C5A880;
+            --accent-gold-glow: rgba(197, 168, 128, 0.15);
+            --text-light: #f5f5f5;
+            --text-muted: #8e8e93;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Base Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background-color: var(--bg-dark); }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* Typography Structural Classes */
+        h1, h2, h3, .logo { font-family: var(--font-display); font-weight: 300; letter-spacing: 1px; }
+        p { font-weight: 200; letter-spacing: 0.5px; }
+        
+        .section-header { text-align: center; margin-bottom: 5rem; padding: 0 5%; }
+        .section-title { font-size: 3rem; color: var(--text-light); margin-bottom: 0.5rem; }
+        .section-title span { color: var(--accent-gold); font-style: italic; }
+        .section-subtitle { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
+        /* Premium Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 30px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+        nav.scrolled {
+            padding: 20px 8%;
+            background: rgba(7, 7, 7, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+        }
+        .logo { font-size: 2rem; color: var(--text-light); letter-spacing: 4px; text-transform: uppercase; }
+        .logo span { color: var(--accent-gold); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: var(--transition-smooth); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
+
+        /* Luxury Interactive Components */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 36px;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+            background: transparent;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--accent-gold); transition: var(--transition-smooth); z-index: -1;
+        }
+        .cta-btn:hover { color: var(--bg-dark); border-color: var(--accent-gold); }
+        .cta-btn:hover::before { left: 0; }
+        .cta-btn i { margin-left: 10px; font-size: 0.75rem; transition: transform 0.3s; }
+        .cta-btn:hover i { transform: translateX(5px); }
+
+        /* Hero Layout - Immersive Depth Focus */
+        #hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 5%;
+            background: linear-gradient(rgba(7,7,7,0.2), rgba(7,7,7,1)), 
+                        url('https://lh3.googleusercontent.com/p/AF1QipMcAqd2sGGKH8Xj-G-9eh5GpwdVz2HMYBTnzg6s=w1200-h800-no') center/cover no-repeat;
+        }
+        .hero-content { max-width: 950px; z-index: 10; }
+        .hero-content h1 { font-size: 5rem; line-height: 1.1; margin-bottom: 25px; font-weight: 300; }
+        .hero-content p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; font-family: var(--font-sans); }
+
+        /* About Layout - Editorial Composition */
+        #about { padding: 160px 8%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+        .about-statement { padding-right: 40px; }
+        .about-statement h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; }
+        .about-statement h2 span { color: var(--accent-gold); font-style: italic;}
+        .about-statement p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 35px; text-align: justify;}
+        .about-services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .about-services-list item { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--text-light); letter-spacing: 1px;}
+        .about-services-list item i { color: var(--accent-gold); font-size: 0.6rem; }
+        
+        .about-media-frame { position: relative; width: 100%; display: flex; justify-content: center; }
+        .about-media-frame img { 
+            width: 85%; height: auto; max-height: 600px; object-fit: cover;
+            filter: brightness(0.7) contrast(1.1); transition: var(--transition-smooth);
+            border: 1px solid rgba(197, 168, 128, 0.15);
+        }
+        .about-media-frame:hover img { filter: brightness(0.95) contrast(1); }
+
+        /* Portfolio Gallery - Dynamic Masonry Grid Configuration */
+        #portfolio { padding: 120px 8%; }
+        .gallery-filter { display: flex; justify-content: center; gap: 35px; margin-bottom: 60px; list-style: none; }
+        .gallery-filter li { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); cursor: pointer; transition: var(--transition-smooth); position: relative; padding-bottom: 6px; }
+        .gallery-filter li::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent-gold); transition: var(--transition-smooth); }
+        .gallery-filter li:hover, .gallery-filter li.active { color: var(--accent-gold); }
+        .gallery-filter li.active::after { width: 100%; }
+
+        .masonry-viewport {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            auto-rows: 240px;
+        }
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.03);
+            cursor: pointer;
+        }
+        /* Grid Span Alignments optimized globally around the 5 strict structural asset metrics provided */
+        .portfolio-card.item-0 { grid-column: span 1; grid-row: span 2; } /* Landscape source structured vertically scaled */
+        .portfolio-card.item-1 { grid-column: span 1; grid-row: span 3; } /* Ultra Tall Portrait source asset */
+        .portfolio-card.item-2 { grid-column: span 1; grid-row: span 2; } /* Mid-Portrait */
+        .portfolio-card.item-3 { grid-column: span 1; grid-row: span 2; } /* Mid-Portrait Dynamic Pair */
+        .portfolio-card.item-4 { grid-column: span 2; grid-row: span 2; } /* Final wide showcase highlight */
+
+        .portfolio-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; }
+        .portfolio-card:hover img { transform: scale(1.04); filter: brightness(0.9); }
+        
+        .card-context-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
+            background: linear-gradient(transparent, rgba(7,7,7,0.95));
+            opacity: 0; transform: translateY(15px); transition: var(--transition-smooth);
+        }
+        .portfolio-card:hover .card-context-overlay { opacity: 1; transform: translateY(0); }
+        .card-context-overlay h4 { font-size: 1.6rem; font-weight: 300; margin-bottom: 5px; color: var(--text-light); }
+        .card-context-overlay p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); }
+
+        /* Services Layer - Architectural Card Panels */
+        #services { padding: 140px 8%; background: linear-gradient(180deg, var(--bg-dark), #0b0b0b, var(--bg-dark)); }
+        .services-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-panel {
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .service-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--accent-gold); transform: scaleX(0); transform-origin: left; transition: var(--transition-smooth);
+        }
+        .service-panel:hover { border-color: rgba(197, 168, 128, 0.15); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .service-panel:hover::before { transform: scaleX(1); }
+        .service-panel i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 30px; display: block; }
+        .service-panel h3 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 300; }
+        .service-panel p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+        /* Testimonials - Immersive Editorial Typography Blocks */
+        #testimonials { padding: 140px 8%; }
+        .testimonial-rack { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .testimonial-block { background: var(--bg-card); padding: 60px; border-left: 1px solid var(--accent-gold); }
+        .testimonial-block p { font-family: var(--font-display); font-size: 1.6rem; font-style: italic; color: #e5e5e5; line-height: 1.5; margin-bottom: 30px; }
+        .testimonial-block h4 { font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); }
+
+        /* Instagram Section Layout */
+        #instagram { padding: 120px 0 0; text-align: center; }
+        .instagram-reel { display: flex; width: 100%; margin-top: 50px; overflow: hidden; }
+        .instagram-tile { flex: 1; aspect-ratio: 1/1; position: relative; overflow: hidden; border-right: 1px solid var(--bg-dark); }
+        .instagram-tile img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) grayscale(30%); transition: var(--transition-smooth); }
+        .instagram-tile:hover img { filter: brightness(0.9) grayscale(0%); transform: scale(1.05); }
+        .instagram-intent { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; justify-content: center; align-items: center; background: rgba(7,7,7,0.4); opacity: 0; transition: var(--transition-smooth); }
+        .instagram-tile:hover .instagram-intent { opacity: 1; }
+        .instagram-intent i { font-size: 1.8rem; color: var(--text-light); }
+
+        /* Contact Section Matrix Layout */
+        #contact { padding: 140px 8%; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; background: #0a0a0a; }
+        .contact-context h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; }
+        .contact-context h2 span { color: var(--accent-gold); font-style: italic; }
+        .contact-context p { color: var(--text-muted); font-size: 1rem; margin-bottom: 40px; max-width: 450px; }
+        
+        .contact-gateways { display: flex; gap: 20px; }
+        .gateway-icon {
+            display: flex; align-items: center; justify-content: center; width: 55px; height: 55px;
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; font-size: 1.2rem;
+            color: var(--text-light); transition: var(--transition-smooth); background: var(--bg-dark);
+        }
+        .gateway-icon:hover { border-color: var(--accent-gold); color: var(--accent-gold); transform: translateY(-4px); box-shadow: 0 8px 20px var(--accent-gold-glow); }
+
+        .luxury-form { display: flex; flex-direction: column; gap: 25px; }
+        .form-group { position: relative; width: 100%; }
+        .luxury-form input, .luxury-form textarea {
+            width: 100%; padding: 18px 5px; background: transparent; border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--text-light);
+            font-family: var(--font-sans); font-size: 0.9rem; font-weight: 200; transition: var(--transition-smooth);
+        }
+        .luxury-form input:focus, .luxury-form textarea:focus { outline: none; border-bottom-color: var(--accent-gold); }
+        .luxury-form textarea { min-height: 120px; resize: none; }
+        
+        /* Modern Footer Styling */
+        footer { padding: 50px 8%; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); background: var(--bg-dark); }
+        footer p { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+        footer p span { color: var(--accent-gold); font-family: var(--font-display); font-size: 1.1rem; text-transform: none; letter-spacing: 0; }
+
+        /* Animation Classes (Intersection Observer Engine) */
+        .reveal-node { opacity: 0; transform: translateY(40px); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-node.active-state { opacity: 1; transform: translateY(0); }
+
+        /* Highly Adaptable Responsive Layout Controls */
+        @media (max-width: 1024px) {
+            #about, #contact { grid-template-columns: 1fr; gap: 60px; }
+            .about-statement { padding-right: 0; }
+            .masonry-viewport { grid-template-columns: repeat(2, 1fr); auto-rows: 280px; }
+            .portfolio-card.item-4 { grid-column: span 1; }
+            .hero-content h1 { font-size: 3.8rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .section-title { font-size: 2.3rem; }
+            .masonry-viewport { grid-template-columns: 1fr; auto-rows: auto; }
+            .portfolio-card { aspect-ratio: 4/5; grid-column: span 1 !important; grid-row: span 1 !important; }
+            .testimonial-rack { grid-template-columns: 1fr; }
+            :root { --spacing-section: 90px 5%; }
+            #about { padding: 100px 5%; }
+            #contact { padding: 100px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Frame -->
+    <nav id="global-nav">
+        <div class="logo">KT<span>.</span></div>
+        <div class="nav-links">
+            <a href="#hero" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Immersive Intro Frame -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="reveal-node">Capturing Emotions Beyond Frames</h1>
+            <p class="reveal-node" style="transition-delay: 0.15s;">High-end cinematic storytelling and wedding photography dedicated to freezing raw feelings, bespoke elegance, and eternal visual narratives.</p>
+            <div class="reveal-node" style="transition-delay: 0.3s;">
+                <a href="#portfolio" class="cta-btn">Explore Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structural About Segment -->
+    <section id="about">
+        <div class="about-statement reveal-node">
+            <p class="section-subtitle">The Creative Studio</p>
+            <h2 style="margin-top: 10px;">Crafting Visual <span>Poetry</span></h2>
+            <p>At KT Photography, we treat reality as a canvas for premium visual storytelling. Grounded in a modern luxury dark theme, our framing principles utilize cinematic shadows, golden hour illumination, and natural human intimacy. We minimize production clutter to let real connections take center stage.</p>
+            <div class="about-services-list">
+                <item><i class="fa-solid fa-circle"></i> Wedding Photography</item>
+                <item><i class="fa-solid fa-circle"></i> Pre-Wedding Shoots</item>
+                <item><i class="fa-solid fa-circle"></i> Cinematic Reels</item>
+                <item><i class="fa-solid fa-circle"></i> Event Coverage</item>
+                <item><i class="fa-solid fa-circle"></i> Couple Portraits</item>
+            </div>
+        </div>
+        <div class="about-media-frame reveal-node" style="transition-delay: 0.2s;">
+            <!-- Targeted Deployment of Landscape Asset 1 in Editorial Format -->
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNm6f802YwqIT76_gFpoQBjReNyV09zw2b1gPEk=w600-h400-n" alt="KT Photography Studio Frame">
+        </div>
+    </section>
+
+    <!-- Curated Mosaic Gallery Frame -->
+    <section id="portfolio">
+        <div class="section-header reveal-node">
+            <h2 class="section-title">Selected <span>Narratives</span></h2>
+            <p class="section-subtitle">Bespoke Fine-Art Gallery</p>
+        </div>
+        
+        <ul class="gallery-filter reveal-node">
+            <li class="active">All Gallery</li>
+            <li>Weddings</li>
+            <li>Portraits</li>
+            <li>Events</li>
+            <li>Cinematic Stories</li>
+        </ul>
+
+        <div class="masonry-viewport">
+            <!-- Asset Element 1 -->
+            <div class="portfolio-card item-0 reveal-node">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipNm6f802YwqIT76_gFpoQBjReNyV09zw2b1gPEk=w600-h500-n" alt="Cinematic Wedding Story">
+                <div class="card-context-overlay">
+                    <h4>The Golden Light</h4>
+                    <p>Weddings</p>
+                </div>
+            </div>
+            <!-- Asset Element 2 -->
+            <div class="portfolio-card item-1 reveal-node" style="transition-delay: 0.1s;">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMcAqd2sGGKH8Xj-G-9eh5GpwdVz2HMYBTnzg6s=w600-h900-n" alt="Bespoke Portrait">
+                <div class="card-context-overlay">
+                    <h4>Ethereal Gazes</h4>
+                    <p>Portraits</p>
+                </div>
+            </div>
+            <!-- Asset Element 3 -->
+            <div class="portfolio-card item-2 reveal-node" style="transition-delay: 0.2s;">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAElNn39vcwcxLM1sIDQvF-M5TVAkWH-v1K0-Absf2cL_G8VdRnud9fKDRJ5e-SSBI5L1WxVjFVkXkIn6Qjl71qliNrJAM6aVCEq45Tl6SfrsANebr7Om_JWQr_TcPRO9j5zZy_o=w600-h700-n" alt="Luxury Event Frame">
+                <div class="card-context-overlay">
+                    <h4>Atmospheric Magic</h4>
+                    <p>Events</p>
+                </div>
+            </div>
+            <!-- Asset Element 4 -->
+            <div class="portfolio-card item-3 reveal-node">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOWTfP6txdLBo5xPSMbF-cJccxi3AIWdIMCKKN_=w600-h700-n" alt="Cinematic Narrative Frame">
+                <div class="card-context-overlay">
+                    <h4>Timeless Grace</h4>
+                    <p>Cinematic Stories</p>
+                </div>
+            </div>
+            <!-- Asset Element 5 -->
+            <div class="portfolio-card item-4 reveal-node" style="transition-delay: 0.15s;">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipN1med-oNUKY9iw9z4Mg4IsaWZur4RjglbQobNN=w800-h600-n" alt="Premium Couple Session">
+                <div class="card-context-overlay">
+                    <h4>Embrace of Time</h4>
+                    <p>Weddings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Services Execution Architecture -->
+    <section id="services">
+        <div class="section-header reveal-node">
+            <h2 class="section-title">Our <span>Expertise</span></h2>
+            <p class="section-subtitle">Luxury Production Packages</p>
+        </div>
+        
+        <div class="services-matrix">
+            <div class="service-panel reveal-node">
+                <i class="fa-solid fa-camera-retro"></i>
+                <h3>Wedding Photography</h3>
+                <p>High-end artistic preservation of your luxury milestones with a keen emphasis on raw emotion and cinematic compositions.</p>
+            </div>
+            <div class="service-panel reveal-node" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-clapperboard"></i>
+                <h3>Cinematic Videography</h3>
+                <p>Stunning short feature films featuring stylized color matrices, musical arrangements, and immersive emotional timelines.</p>
+            </div>
+            <div class="service-panel reveal-node" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <h3>Drone Shoots</h3>
+                <p>Majestic aerial cinematography adding production value, grand structural scaling, and landscape context to your events.</p>
+            </div>
+            <div class="service-panel reveal-node" style="transition-delay: 0.3s;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Couple Shoots</h3>
+                <p>Editorial pre-wedding styling execution focused strictly on ambient lighting architecture, warmth, and intimate portrait frames.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Module -->
+    <section id="testimonials">
+        <div class="section-header reveal-node">
+            <h2 class="section-title">Kind <span>Testimonies</span></h2>
+            <p class="section-subtitle">Reflections From Our Couples</p>
+        </div>
+        <div class="testimonial-rack">
+            <div class="testimonial-block reveal-node">
+                <p>"KT Photography delivered timeless luxury art piece assets. Their dramatic control over dark aesthetics transformed our vows into what looks like a vintage high-end cinema spread."</p>
+                <h4>— Adrian & Clara</h4>
+            </div>
+            <div class="testimonial-block reveal-node" style="transition-delay: 0.15s;">
+                <p>"Incredible attention to detail, complete discretion during our private estate gala, and breathtaking portraits that managed to effortlessly translate real, deep emotion."</p>
+                <h4>— Marcus & Vivian</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Social Feed Mock Matrix -->
+    <section id="instagram">
+        <div class="reveal-node">
+            <p class="section-subtitle">Visual Diaries</p>
+            <h2 class="section-title" style="margin-top: 10px;">@KT<span>.</span>Photography</h2>
+        </div>
+        <div class="instagram-reel">
+            <div class="instagram-tile"><img src="https://lh3.googleusercontent.com/p/AF1QipMcAqd2sGGKH8Xj-G-9eh5GpwdVz2HMYBTnzg6s=w400-h400-n" alt="Social Post"><div class="instagram-intent"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="instagram-tile"><img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAElNn39vcwcxLM1sIDQvF-M5TVAkWH-v1K0-Absf2cL_G8VdRnud9fKDRJ5e-SSBI5L1WxVjFVkXkIn6Qjl71qliNrJAM6aVCEq45Tl6SfrsANebr7Om_JWQr_TcPRO9j5zZy_o=w400-h400-n" alt="Social Post"><div class="instagram-intent"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="instagram-tile"><img src="https://lh3.googleusercontent.com/p/AF1QipOWTfP6txdLBo5xPSMbF-cJccxi3AIWdIMCKKN_=w400-h400-n" alt="Social Post"><div class="instagram-intent"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="instagram-tile"><img src="https://lh3.googleusercontent.com/p/AF1QipN1med-oNUKY9iw9z4Mg4IsaWZur4RjglbQobNN=w400-h400-n" alt="Social Post"><div class="instagram-intent"><i class="fa-brands fa-instagram"></i></div></div>
+        </div>
+    </section>
+
+    <!-- Contact & Direct Inquiry Matrix -->
+    <section id="contact">
+        <div class="contact-context reveal-node">
+            <h2>Let's Preserve <span>Art</span> Together.</h2>
+            <p>Commission space is highly limited globally. Drop a note regarding your project destination, custom packages, or calendar validation requirements.</p>
+            <div class="contact-gateways">
+                <a href="#" class="gateway-icon" aria-label="Connect via WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="gateway-icon" aria-label="Connect via Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+        <form class="luxury-form reveal-node" onsubmit="event.preventDefault();" style="transition-delay: 0.15s;">
+            <div class="form-group"><input type="text" placeholder="Your Full Name" required></div>
+            <div class="form-group"><input type="email" placeholder="Your Email Address" required></div>
+            <div class="form-group"><input type="text" placeholder="Inquiry Dimension (e.g., Destination Wedding)"></div>
+            <div class="form-group"><textarea placeholder="Unveil your artistic parameters and vision details..." required></textarea></div>
+            <button type="submit" class="cta-btn" style="margin-top: 15px;">Send Luxury Inquiry</button>
+        </form>
+    </section>
+
+    <!-- Studio Footer Layout -->
+    <footer>
+        <p>&copy; 2026 <span>KT.</span> Photography Studio. Curating Legacies Eternally.</p>
+    </footer>
+
+    <!-- Execution Script Engine -->
+    <script>
+        // Smooth Translucent Navigation Control
+        const globalNav = document.getElementById('global-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                globalNav.classList.add('scrolled');
+            } else {
+                globalNav.classList.remove('scrolled');
+            }
+        });
+
+        // Precision Intersection Observer Script for Reveal Elements
+        const elementNodes = document.querySelectorAll('.reveal-node');
+        const processingOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px"
+        };
+
+        const appearanceObserver = new IntersectionObserver((entries, appearanceObserver) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active-state');
+                    appearanceObserver.unobserve(entry.target);
+                }
+            });
+        }, processingOptions);
+
+        elementNodes.forEach(node => {
+            appearanceObserver.observe(node);
+        });
+    </script>
+</body>
+</html>
